@@ -4,32 +4,24 @@ labels: ['bug']
 title: '[BUG] <title>'
 
 body:
-  - type: checkboxes
+  - type: markdown
     attributes:
-      label: Before you begin...
-      options:
-        - label: I have searched the existing issues
-          required: true
-        - label: I am not using version 13.x of node  (if so, please upgrade)
-          required: true
+      value: |
+        **IMPORTANT**: Failure to provide a [Minimal, Complete, and Verifiable](https://stackoverflow.com/help/minimal-reproducible-example) example will result in this issue being closed without further review.'
 
   - type: textarea
     attributes:
-      label: Description of the problem
+      label: Description
     validations:
       required: false
 
   - type: textarea
     attributes:
       label: Recipe for reproducing
-      description: '**IMPORTANT**: Failure to provide a [Minimal, Complete, and Verifiable](https://stackoverflow.com/help/minimal-reproducible-example) example will result in this issue being closed without further review.'
+      description: You read the "IMPORTANT" note above, right?   RIGHT?!?
       render: bash
     validations:
       required: false
-
-  - type: textarea
-    attributes:
-      label: Additional information
 
   - type: textarea
     attributes:
