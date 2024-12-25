@@ -2,7 +2,6 @@
   -- This file is auto-generated from README_js.md. Changes should be made there.
   -->
 
-
 # uuid [![CI](https://github.com/uuidjs/uuid/workflows/CI/badge.svg)](https://github.com/uuidjs/uuid/actions?query=workflow%3ACI) [![Browser](https://github.com/uuidjs/uuid/workflows/Browser/badge.svg)](https://github.com/uuidjs/uuid/actions?query=workflow%3ABrowser)
 
 For the creation of [RFC9562](https://www.rfc-editor.org/rfc/rfc9562.html) (formerly [RFC4122](https://www.rfc-editor.org/rfc/rfc4122.html)) UUIDs
@@ -117,13 +116,13 @@ Example:
 import { parse as uuidParse } from 'uuid';
 
 // Parse a UUID
-uuidParse('6ec0bd7f-11c0-43da-975e-2a8ad9ebae0b'); // ⇨ 
-  // Uint8Array(16) [
-  //   110, 192, 189, 127,  17,
-  //   192,  67, 218, 151,  94,
-  //    42, 138, 217, 235, 174,
-  //    11
-  // ]
+uuidParse('6ec0bd7f-11c0-43da-975e-2a8ad9ebae0b'); // ⇨
+// Uint8Array(16) [
+//   110, 192, 189, 127,  17,
+//   192,  67, 218, 151,  94,
+//    42, 138, 217, 235, 174,
+//    11
+// ]
 ```
 
 ### uuid.stringify(arr[, offset])
@@ -367,7 +366,7 @@ Create an RFC version 7 (random) UUID
 | [`options.msecs = (current time)`] | RFC "timestamp" field (`Number` of milliseconds, unix epoch) |
 | [`options.random = (random)`] | `Array` of 16 random bytes (0-255) used to generate other fields, above |
 | [`options.rng`] | Alternative to `options.random`, a `Function` that returns an `Array` of 16 random bytes (0-255) |
-| [`options.seq = (random)`] | 32-bit sequence `Number` between 0 - 0xffffffff. This may be provided to help insure uniqueness for UUIDs generated within the same millisecond time interval. Default = random value. |
+| [`options.seq = (random)`] | 32-bit sequence `Number` between 0 - 0xffffffff. This may be provided to help ensure uniqueness for UUIDs generated within the same millisecond time interval. Default = random value. |
 | [`buffer`] | `Array \| Buffer` If specified, uuid will be written here in byte-form, starting at `offset` |
 | [`offset` = 0] | `Number` Index to start writing UUID bytes in `buffer` |
 | _returns_ | UUID `String` if no `buffer` is specified, otherwise returns `buffer` |
@@ -475,7 +474,7 @@ defined by RFC9562
 
 ## `options` Handling for Timestamp UUIDs
 
-Prior to `uuid@11`, it was possible for `options` state to interfere with the internal state used to insure uniqueness of timestamp-based UUIDs (the `v1()`, `v6()`, and `v7()` methods). Starting with `uuid@11`, this issue has been addressed by using the presence of the `options` argument as a flag to select between two possible behaviors:
+Prior to `uuid@11`, it was possible for `options` state to interfere with the internal state used to ensure uniqueness of timestamp-based UUIDs (the `v1()`, `v6()`, and `v7()` methods). Starting with `uuid@11`, this issue has been addressed by using the presence of the `options` argument as a flag to select between two possible behaviors:
 
 - Without `options`: Internal state is utilized to improve UUID uniqueness.
 - With `options`: Internal state is **NOT** used and, instead, appropriate defaults are applied as needed.
@@ -490,7 +489,13 @@ Prior to `uuid@11`, it was possible for `options` state to interfere with the in
 
 ## Known issues
 
-### React Native / Expo
+<!-- This header is referenced as an anchor in src/rng-browser.ts -->
+
+### "getRandomValues() not supported"
+
+This error occurs in environments where the standard [`crypto.getRandomValues()`](https://developer.mozilla.org/en-US/docs/Web/API/Crypto/getRandomValues) API is not supported. This issue can be resolved by adding an appropriate polyfill:
+
+#### React Native / Expo
 
 1. Install [`react-native-get-random-values`](https://github.com/LinusU/react-native-get-random-values#readme)
 1. Import it _before_ `uuid`. Since `uuid` might also appear as a transitive dependency of some other imports it's safest to just import `react-native-get-random-values` as the very first thing in your entry point:
@@ -502,4 +507,4 @@ import { v4 as uuidv4 } from 'uuid';
 
 ---
 
-Markdown generated from [README_js.md](README_js.md) by <a href="https://github.com/broofa/runmd"><image height="12px" src="https://camo.githubusercontent.com/5c7c603cd1e6a43370b0a5063d457e0dabb74cf317adc7baba183acb686ee8d0/687474703a2f2f692e696d6775722e636f6d2f634a4b6f3662552e706e67" /></a>
+Markdown generated from [README_js.md](README_js.md) by <a href="https://github.com/broofa/runmd"><image height="13" src="https://camo.githubusercontent.com/5c7c603cd1e6a43370b0a5063d457e0dabb74cf317adc7baba183acb686ee8d0/687474703a2f2f692e696d6775722e636f6d2f634a4b6f3662552e706e67" /></a>
